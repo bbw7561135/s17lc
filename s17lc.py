@@ -73,6 +73,15 @@ def luminosity(rs, vs, n0, epse, p, nu):
     nu: observing frequency (in GHz)
 
     """
+    # Convert all theinputs to arrays
+
+    rs=np.array(rs)
+    vs=np.array(vs)
+    n0=np.array(n0)
+    epse=np.array(epse)
+    p=np.array(p)
+    nu=np.array(nu)
+
     #~~~~~~ Constants ~~~~~~~~~~~~~~~#
     ef = 0.38  #Emission filling factor
     c1 = 6.27e18 #Pacholyzyk (1980) constants. Note that these depend on p.
@@ -100,11 +109,18 @@ def luminosity(rs, vs, n0, epse, p, nu):
     MA = vs_cgs/vA #Alfven Mach Number
     
     epsCR = 0.01*(0.15*MA + 6.)  #Cosmic ray acceleration efficiency
-    epsCR[epsCR>0.1] = 0.1  #See Section A2
+
+    # epsCR[epsCR>0.1] = 0.1  #See Section A2
+    epsCR=np.array(epsCR)
+    epsCR=np.select([epsCR>0.1],[0.1],default=epsCR)
+
     epsub = (epsCR/2.)*((vs_cgs/c) + (1./MA)) #Eq A7
     Bu = np.sqrt(8.*3.14*epsub*rho0*vs_cgs**2) #Eq A3
     B = Bu*np.sqrt((1. + 2.*(eta**2))/3.) #Eq A8
-    B[np.where(B<4.*B0)] = 4.*B0 #We assert that SNR magnetic field should atleast be a simple compression of the ISM field (B0)
+
+    B=np.array(B)
+    B=np.select([B<4*B0],[4*B0],default=B)
+    # B[np.where(B<4.*B0)] = 4.*B0 #We assert that SNR magnetic field should atleast be a simple compression of the ISM field (B0)
 
     #~~~~~~ Luminosity ~~~~~~~~~~~~~~~~~~~#
     s = ef*(4./3.)*(rs_cgs) #Eq A9
@@ -116,7 +132,10 @@ def luminosity(rs, vs, n0, epse, p, nu):
     #This is a short step I am adding because the above equation for L2 runs into numerical errors
     #for nu>>nu1 (i.e. much later in the SNR age). This is particularly apparent for very low densities (e.g. n0<0.01)
     #To avoid this for now, I enforce the approximation: e^-x = 1 - x (for x<<1). May revisit this at some point
-    L2[nu>20.*nu1] = ((nu/nu1)**(-1.0*(p+4)/2.))[nu>20.*nu1]
+
+    L2=np.select([nu>20.*nu1],[((nu/nu1)**(-1.0*(p+4)/2.))],default=L2)
+    # L2[nu>20.*nu1] = ((nu/nu1)**(-1.0*(p+4)/2.))[nu>20.*nu1]
+
     L3 = (nu/(2.*c1))**(5./2.)
 
     return L1*L2*L3 #Eq A10
