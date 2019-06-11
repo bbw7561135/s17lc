@@ -76,7 +76,7 @@ def luminosity(rs, vs, n0, epse, p, nu):
     n0: ISM density (in atoms/cc)
     epse: electron acceleration efficiency 
     p: electron spectral index (stay within p=2.2-2.5)
-    nu: observing frequency (in GHz)
+    nu: observing frequency (in GHz or Hz)
 
     """
     # Convert all theinputs to arrays
@@ -88,6 +88,9 @@ def luminosity(rs, vs, n0, epse, p, nu):
     # epse=np.array(epse)
     # p=np.array(p)
     # nu=np.array(nu)
+
+    if nu<100:
+        nu*=1e9
 
     #~~~~~~ Constants ~~~~~~~~~~~~~~~#
     ef = 0.38  #Emission filling factor

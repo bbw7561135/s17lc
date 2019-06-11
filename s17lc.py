@@ -3,6 +3,13 @@
 # Light curve from paper. This is to make sure all the equations
 # as they appear in the paper are consistent with my program.
 #
+#  History
+#     This is a version of Sumit Sarbarchicary's 2017 model
+#     to predict radio luminosities.  This version has 
+#     minor changes to try to accommodate a situation where
+#     all of the input parameters are numbers.  Sumit's
+#     original version requred rs and vs in the luminosity
+#     function to be numpy arrays.  
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 
 import numpy as np
@@ -70,10 +77,14 @@ def luminosity(rs, vs, n0, epse, p, nu):
     n0: ISM density (in atoms/cc)
     epse: electron acceleration efficiency 
     p: electron spectral index (stay within p=2.2-2.5)
-    nu: observing frequency (in GHz)
+    nu: observing frequency (in GHz or Hz)
 
     """
     # Convert all theinputs to arrays
+
+    if nu<100:
+        nu*=1e9
+
 
     rs=np.array(rs)
     vs=np.array(vs)

@@ -1,4 +1,5 @@
-# s17lc
+# s17lc  (as revised by ksl)
+
 This is a repository for the radio light curve program used in [Sarbadhicary et al 2017](http://adsabs.harvard.edu/abs/2017MNRAS.464.2326S). **Please cite the paper if you use the code for your project**. Here is the BibteX citation:
 ```@ARTICLE{2017MNRAS.464.2326S,
    author = {{Sarbadhicary}, S.~K. and {Badenes}, C. and {Chomiuk}, L. and 
@@ -19,6 +20,8 @@ archivePrefix = "arXiv",
 }
 ```
 
+
+
 The code is written with Python 2.7, although it should work with Python 3+. It should only require `numpy` and `matplotlib` installed.
 
 ### Installation
@@ -35,3 +38,9 @@ The program `s17lc.py` is the coded up version of the equations A1-A11 in the pa
 
 ### Usage
 You can use these to create light curves or estimate values at a particular age. I have included a Jupyter notebook, `test_s17lc.ipynb` to show how to generate radius, velocity, and light curves with the code. 
+
+### Updates by ksl
+This version of the repository contains a new routine rsnr.py which isk ksl's rewwrite of the routines contained in s17lc.pyand a new routine do_one which will generate a table of the radio luminosity as a function of time, given the parameters
+one needs to describe the model.  The Jupyter notebooks BasicTest and Python3test were written as diagnostic routines for
+this effort.  The Jupyter notebook test_s17lc needs files that were not procided in Sarbadhicary's git respostitory which 
+can be found [here](https://github.com/sks67/s17lc)
