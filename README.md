@@ -41,7 +41,7 @@ You can use these to create light curves or estimate values at a particular age.
 
 Either s17lc.py or rsnr.py can be used to do this.  
 
-rnsr.py is ksl's adaptation of the original routine.  It contains a routine do_one that takes the parameters needed to define a SNR and generates a radio lightcurve as a function of diameter and time.  The results are contained in an astropy Table.  
+rsnr.py is ksl's adaptation of the original routine.  It contains a routine do_one that takes the parameters needed to define a SNR and generates a radio lightcurve as a function of diameter and time.  The results are contained in an astropy Table.  
 
 ### Updates by ksl
 This version of the repository contains a new routine rsnr.py which isk ksl's rewwrite of the routines contained in s17lc.py and a new routine do_one which will generate a table of the radio luminosity as a function of time, given the parameters
