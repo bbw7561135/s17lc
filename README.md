@@ -37,10 +37,14 @@ The program `s17lc.py` is the coded up version of the equations A1-A11 in the pa
 2. `luminosity()`: This provides the luminosity of the supernova remnant, given the radius, velocity, density and other parameters. 
 
 ### Usage
-You can use these to create light curves or estimate values at a particular age. I have included a Jupyter notebook, `test_s17lc.ipynb` to show how to generate radius, velocity, and light curves with the code. 
+You can use these to create light curves or estimate values at a particular age. 
+
+Either s17lc.py or rsnr.py can be used to do this.  
+
+rnsr.py is ksl's adaptation of the original routine.  It contains a routine do_one that takes the parameters needed to define a SNR and generates a radio lightcurve as a function of diameter and time.  The results are contained in an astropy Table.  
 
 ### Updates by ksl
-This version of the repository contains a new routine rsnr.py which isk ksl's rewwrite of the routines contained in s17lc.pyand a new routine do_one which will generate a table of the radio luminosity as a function of time, given the parameters
+This version of the repository contains a new routine rsnr.py which isk ksl's rewwrite of the routines contained in s17lc.py and a new routine do_one which will generate a table of the radio luminosity as a function of time, given the parameters
 one needs to describe the model.  The Jupyter notebooks BasicTest and Python3test were written as diagnostic routines for
 this effort.  The Jupyter notebook test_s17lc needs files that were not procided in Sarbadhicary's git respostitory which 
 can be found [here](https://github.com/sks67/s17lc)
